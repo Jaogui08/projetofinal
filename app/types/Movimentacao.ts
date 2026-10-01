@@ -1,7 +1,17 @@
 export interface Movimentacao {
     id?: number;
     tipo: string;
-    dataHora: Date;
+    dataHora: string;
     patrimonioId: number;
     salaId: number;
+
+    patrimonio?: {
+        nome: string;
+        status: string;
+        foto?: string | null;
+    };
+
+    sala?: {
+        nome: string;
+    };
 }

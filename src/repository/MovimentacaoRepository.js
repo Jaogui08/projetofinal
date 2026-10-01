@@ -15,17 +15,18 @@ export class MovimentacaoRepository {
     }
 
     async listarTodos() {
-        const dados = await prisma.movimentacao.findMany();
+        const dados = await prisma.movimentacao.findMany({
+            include: {
+                patrimonio: true,
+                sala: true
+            },
 
-        return dados.map(d =>
-            new Movimentacao(
-                d.tipo,
-                d.patrimonioId,
-                d.salaId,
-                d.dataHora,
-                d.id
-            )
-        );
+            orderBy: {
+                dataHora: "desc"
+            }
+        });
+
+        return dados;
     }
 
     async buscarPorId(id) {

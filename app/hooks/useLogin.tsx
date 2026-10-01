@@ -36,6 +36,8 @@ export function useLogin() {
 
             const usuario = resposta.data;
 
+            localStorage.setItem('usuario', JSON.stringify(usuario));
+
             if (usuario.tipo === 'adm') {
                 router.push('/dashboardadmin');
             } else {
